@@ -96,11 +96,19 @@ function build_loss_objective(prob::DEProblem,alg,loss,regularization=nothing;
     # return an array of DiffEqObjective instances doing single shooting recursively
     [build_loss_objective(prob,alg,subloss,regularization,
                           mpg_autodiff = mpg_autodiff,
+<<<<<<< HEAD
                           verbose_opt = verbose_opt,
                           verbose_steps = verbose_steps,
                           prob_generator = prob_generator,
                           autodiff_prototype = autodiff_prototype,
                           autodiff_chunk = autodiff_chunk,
+=======
+                          verbose_opt = false,
+                          verbose_steps = 100,
+                          prob_generator = prob_generator,
+                          autodiff_prototype = mpg_autodiff ? zeros(prob.p) : nothing,
+                          autodiff_chunk = mpg_autodiff ? ForwardDiff.Chunk(autodiff_prototype) : nothing,
+>>>>>>> origin/dev
                           kwargs...) for subloss in loss_subintervals]
   else
     # return a DiffEqObjective instance
